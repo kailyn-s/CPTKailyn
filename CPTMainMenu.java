@@ -4,8 +4,8 @@ import java.awt.image.BufferedImage;
 
 public class CPTMainMenu{
 	public static void MainMenu(Console con){
-		BufferedImage imgLogo = con.loadImage("logo.png");
-		con.drawImage(imgLogo, 550, 100);
+		BufferedImage imgMainMenu = con.loadImage("mainmenu.png");
+		con.drawImage(imgMainMenu, 0, 0);
 		con.println(" ");
 		con.println(" ");
 		con.println(" ");
