@@ -23,6 +23,42 @@ public class CPTtools{
 		
 	}
 	
+	public static void getname(Console con, int intMoney){
+		BufferedImage imgGetName = con.loadImage("getname.png");
+		con.drawImage(imgGetName, 0, 0);
+		int intCount; 
+		CPTtools.printmoney(con, intMoney);
+		for(intCount = 0; intCount < 10; intCount++){
+			con.println(" ");
+		}
+		con.println(" ");
+		con.print("                                              ");
+	}
+	
+	public static void printmoney(Console con, int intMoney){
+		con.println(" ");
+		con.println("                                                                                            "+intMoney);
+	}
+	
+	public static void getbet(Console con, int intMoney){
+		BufferedImage imgGetBet = con.loadImage("getbet.png");
+		con.drawImage(imgGetBet, 0, 0);
+		int intCount; 
+		con.println(" ");
+		CPTtools.printmoney(con, intMoney);
+		for(intCount = 0; intCount < 13; intCount++){
+			con.println(" ");
+		}
+		con.println(" ");
+		con.print("                                              ");
+	}
+	
+	public static int calculatemoney(int intBet, int intMoney){
+		intMoney = intMoney - intBet; 
+		return intMoney; 
+	}
+		
+	
 	
 	
 	
