@@ -57,7 +57,13 @@ public class CPTtools{
 		intMoney = intMoney - intBet; 
 		return intMoney; 
 	}
+	
+	public static void help(Console con){
+		BufferedImage imgHelp = con.loadImage("help.png");
+		con.drawImage(imgHelp, 0, 0);
+		con.println(" ");
 		
+	}
 	
 	
 	

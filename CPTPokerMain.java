@@ -24,7 +24,7 @@ public class CPTPokerMain{
 			intMoney = CPTtools.calculatemoney(intBet, intMoney);
 			CPTtools.printmoney(con, intMoney);
 		}else if(chrChoice == 'h'){
-			CPTtools.clear(con);
+			CPTtools.help(con);
 		}else if(chrChoice == 'l'){
 			CPTtools.clear(con);
 		}else if(chrChoice == 'q'){
