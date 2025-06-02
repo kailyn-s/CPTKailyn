@@ -31,38 +31,36 @@ public class CPTPokerMain{
 			strCards[intCount][1] = "" + (int)(intCount/13 + 1);		
 		}
 		
-		chrChoice = con.getChar();
-		//Play Option
-		if(chrChoice == 'p'){
-			CPTtools.clear(con);
-			CPTtools.getname(con, intMoney);
-			strName = con.readLine();
-			con.clear();
-			CPTtools.getbet(con, intMoney);
-			intBet = con.readInt();
-			CPTtools.clear(con);
-			intMoney = CPTtools.calculatemoney(intBet, intMoney);
-			CPTtools.printmoney(con, intMoney);
-			
-			//Column 2 - Random Integer (1 to 100)
-			for(intCount = 0; intCount < 52; intCount++){
-					strCards[intCount][2] = "" + ((int)(Math.random() * 100 + 1));
+		chrChoice = ' ';
+		while(chrChoice != 'q'){
+			chrChoice = con.getChar();
+			//Play Option
+			if(chrChoice == 'p'){
+				CPTtools.clear(con);
+				CPTtools.getname(con, intMoney);
+				strName = con.readLine();
+				con.clear();
+				CPTtools.getbet(con, intMoney);
+				intBet = con.readInt();
+				CPTtools.clear(con);
+				intMoney = CPTtools.calculatemoney(intBet, intMoney);
+				CPTtools.printmoney(con, intMoney);
+				
+				//Column 2 - Random Integer (1 to 100)
+				for(intCount = 0; intCount < 52; intCount++){
+						strCards[intCount][2] = "" + ((int)(Math.random() * 100 + 1));
+				}	
+			//Help Option
+			}else if(chrChoice == 'h'){
+				CPTtools.help(con);
+			//Leaderboard Option
+			}else if(chrChoice == 'l'){
+				CPTtools.clear(con);
+			}else if(chrChoice == 'm'){
+				CPTtools.mainmenu(con);
 			}
-			
-			
-		//Help Option
-		}else if(chrChoice == 'h'){
-			CPTtools.help(con);
-			
-		//Leaderboard Option
-		}else if(chrChoice == 'l'){
-			CPTtools.clear(con);
-			
-		//Quit Option
-		}else if(chrChoice == 'q'){
-			CPTtools.clear(con);
 		}
-			
+		CPTtools.quit(con);
 		
 		
 		

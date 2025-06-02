@@ -65,7 +65,16 @@ public class CPTtools{
 		
 	}
 	
+	public static void quit(Console con){
+		BufferedImage imgQuit = con.loadImage("quit.png");
+		con.drawImage(imgQuit, 0, 0);
+		con.println(" ");
+	}
 	
+	public static void leaderboard(Console con){
+		BufferedImage imgLeaderboard = con.loadImage("leaderboard.png");
+		con.drawImage(imgLeaderboard, 0, 0);
+	}
 	
 	
 
