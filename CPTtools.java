@@ -174,7 +174,41 @@ public class CPTtools{
 		return strCards;
 	}
 	
+	public static int[][] dealcards(int intHand[][], String strCards[][]){
+		int intCount;
+		for(intCount = 0; intCount < 5; intCount++){
+			intHand[intCount][0] = Integer.parseInt(strCards[intCount][0]);
+		}
+		for(intCount = 0; intCount < 5; intCount++){
+			intHand[intCount][1] = Integer.parseInt(strCards[intCount][1]);
+		}
+		return intHand; 
+	}
 	
+	public static void setup(Console con){
+		BufferedImage imgSetUp = con.loadImage("setup.png");
+		con.drawImage(imgSetUp, 0, 0);
+		con.println(" ");
+	}
+	
+	public static void printcards(Console con, int intHand[][]){
+		String strFileName;
+		int intCount = 1;
+		
+		strFileName = "cardnumber" + intCount+".png";
+			BufferedImage cardnumber = con.loadImage(strFileName);
+			con.drawImage(cardnumber, 0, 0);
+		con.println(" ");	
+		
+		
+		
+		//for(intCount = 1; intCount < 13; intCount++){
+			//strFileName = "cardnumber" + intCount+".png";
+			//BufferedImage cardnumber = con.loadImage(strFileName);
+		//}
+		
+		//intHand[intCount][0]
+	}
 	
 
 	
