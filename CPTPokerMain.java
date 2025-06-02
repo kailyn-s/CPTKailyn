@@ -44,6 +44,12 @@ public class CPTPokerMain{
 			intMoney = CPTtools.calculatemoney(intBet, intMoney);
 			CPTtools.printmoney(con, intMoney);
 			
+			//Column 2 - Random Integer (1 to 100)
+			for(intCount = 0; intCount < 52; intCount++){
+					strCards[intCount][2] = "" + ((int)(Math.random() * 100 + 1));
+			}
+			
+			
 		//Help Option
 		}else if(chrChoice == 'h'){
 			CPTtools.help(con);
