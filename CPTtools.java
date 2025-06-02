@@ -74,6 +74,42 @@ public class CPTtools{
 	public static void leaderboard(Console con){
 		BufferedImage imgLeaderboard = con.loadImage("leaderboard.png");
 		con.drawImage(imgLeaderboard, 0, 0);
+		con.println(" ");
+		
+		TextInputFile leaderboard = new TextInputFile("leaderboard.txt");
+		String strLeaderboard[][];
+		strLeaderboard = new String[10][2];
+		String strName; 
+		int intScore;
+		int intCount = 0;
+		int intCount1; 
+		int i; 
+		
+		while(leaderboard.eof() == false){
+			strName = leaderboard.readLine();
+			intScore = leaderboard.readInt();
+			intCount = intCount + 1;
+		}
+		System.out.print(intCount);
+		intCount1 = intCount; 
+		System.out.print(intCount1);
+		leaderboard.close();
+		TextInputFile leaderboard1 = new TextInputFile("leaderboard.txt"); 
+		
+		for(i = 0; i < 8; i++){
+			con.println(" ");
+		}
+		if(intCount < 10){
+			System.out.print("less than 10");
+			while(leaderboard1.eof() == false){
+				strName = leaderboard1.readLine();
+				intScore = leaderboard1.readInt();
+				con.println("                                               "+strName+" - "+intScore);
+			}
+		}else if(intCount >= 10){
+			System.out.print("more than 10");
+		}
+		
 	}
 	
 	

@@ -55,8 +55,9 @@ public class CPTPokerMain{
 				CPTtools.help(con);
 			//Leaderboard Option
 			}else if(chrChoice == 'l'){
-				CPTtools.clear(con);
+				CPTtools.leaderboard(con);
 			}else if(chrChoice == 'm'){
+				CPTtools.clear(con);
 				CPTtools.mainmenu(con);
 			}
 		}
