@@ -96,7 +96,7 @@ public class CPTtools{
 		leaderboard.close();
 		TextInputFile leaderboard1 = new TextInputFile("leaderboard.txt"); 
 		
-		for(i = 0; i < 8; i++){
+		for(i = 0; i < 6; i++){
 			con.println(" ");
 		}
 		if(intCount < 10){
@@ -104,12 +104,74 @@ public class CPTtools{
 			while(leaderboard1.eof() == false){
 				strName = leaderboard1.readLine();
 				intScore = leaderboard1.readInt();
-				con.println("                                               "+strName+" - "+intScore);
+				con.println("                                             "+strName+"             "+intScore);
+				con.println(" ");
 			}
 		}else if(intCount >= 10){
 			System.out.print("more than 10");
+			for(intCount1 = 0; intCount1 < 10; intCount1++){
+				strName = leaderboard1.readLine();
+				intScore = leaderboard1.readInt();
+				con.println("                                             "+strName+"             "+intScore);
+				con.println(" ");
+			}
 		}
 		
+	}
+	
+	public static void printname(String strName){
+		TextOutputFile leaderboard = new TextOutputFile("leaderboard.txt", true);
+		leaderboard.println(strName);
+		leaderboard.close();
+	}
+	
+	public static String[][] shuffle(String[][] strCards){
+		int intCount; 
+		int intCount2; 
+		String strCardTemp;
+		//column 0
+		for(intCount = 0; intCount < 52; intCount++){
+			strCards[intCount][0] = ""+ (intCount % 13 + 1);
+		}
+		
+		//Column 1 - Suit
+		/*Diamonds - 1
+		 * Clubs - 2
+		 * Hearts - 3
+		 * Spades - 4 */
+		 
+		for(intCount = 0; intCount < 52; intCount++){
+			strCards[intCount][1] = "" + (int)(intCount/13 + 1);		
+		}
+		
+		//Column 2 - Random Integer (1 to 100)
+				for(intCount = 0; intCount < 52; intCount++){
+						strCards[intCount][2] = "" + ((int)(Math.random() * 100 + 1));
+				}
+				
+		//Bubble Sort
+		for(intCount2 = 0; intCount2 < 52-1; intCount2++){
+			for(intCount = 0; intCount < 52-1; intCount++){
+				if(Integer.parseInt(strCards[intCount][2]) > Integer.parseInt(strCards[intCount + 1][2])){
+					//swap column 0
+					strCardTemp = strCards[intCount][0];
+					strCards[intCount][0] = strCards[intCount + 1][0];
+					strCards[intCount + 1][0] = strCardTemp;
+							
+					//swap column 1
+					strCardTemp = strCards[intCount][1];
+					strCards[intCount][1] = strCards[intCount+1][1];
+					strCards[intCount+1][1] = strCardTemp;
+						
+					//swap column 2
+					strCardTemp = strCards[intCount][2];
+					strCards[intCount][2] = strCards[intCount+1][2];
+					strCards[intCount+1][2] = strCardTemp;
+							
+				}
+			}
+		}
+		return strCards;
 	}
 	
 	

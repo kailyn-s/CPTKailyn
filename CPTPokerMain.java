@@ -12,9 +12,13 @@ public class CPTPokerMain{
 		int intMoney = 1000;
 		int intBet; 
 		int intCount;
+		int intCount2;
 		String strCards[][];
+		int intHand[][];
+		String strCardTemp;
 		
 		strCards = new String[52][3];
+		intHand = new int[5][2];
 		
 		//Column 0 - Card Number
 		for(intCount = 0; intCount < 52; intCount++){
@@ -39,6 +43,7 @@ public class CPTPokerMain{
 				CPTtools.clear(con);
 				CPTtools.getname(con, intMoney);
 				strName = con.readLine();
+				CPTtools.printname(strName);
 				con.clear();
 				CPTtools.getbet(con, intMoney);
 				intBet = con.readInt();
@@ -49,7 +54,31 @@ public class CPTPokerMain{
 				//Column 2 - Random Integer (1 to 100)
 				for(intCount = 0; intCount < 52; intCount++){
 						strCards[intCount][2] = "" + ((int)(Math.random() * 100 + 1));
-				}	
+				}
+				
+				//Bubble Sort
+				for(intCount2 = 0; intCount2 < 52-1; intCount2++){
+					for(intCount = 0; intCount < 52-1; intCount++){
+						if(Integer.parseInt(strCards[intCount][2]) > Integer.parseInt(strCards[intCount + 1][2])){
+							//swap column 0
+							strCardTemp = strCards[intCount][0];
+							strCards[intCount][0] = strCards[intCount + 1][0];
+							strCards[intCount + 1][0] = strCardTemp;
+							
+							//swap column 1
+							strCardTemp = strCards[intCount][1];
+							strCards[intCount][1] = strCards[intCount+1][1];
+							strCards[intCount+1][1] = strCardTemp;
+							
+							//swap column 2
+							strCardTemp = strCards[intCount][2];
+							strCards[intCount][2] = strCards[intCount+1][2];
+							strCards[intCount+1][2] = strCardTemp;
+							
+						}
+					}
+				}
+					
 			//Help Option
 			}else if(chrChoice == 'h'){
 				CPTtools.help(con);
