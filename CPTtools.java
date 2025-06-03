@@ -193,12 +193,16 @@ public class CPTtools{
 	
 	public static void printcards(Console con, int intHand[][]){
 		String strFileName;
-		int intCount = 1;
+		int intCount;
+		int intX = 0; 
 		
-		strFileName = "cardnumber" + intCount+".png";
-			BufferedImage cardnumber = con.loadImage(strFileName);
-			con.drawImage(cardnumber, 0, 0);
-		con.println(" ");	
+		for(intCount = 0; intCount < 5; intCount++){
+			strFileName = "cardnumber" + intHand[intCount][0]+".png";
+				BufferedImage cardnumber = con.loadImage(strFileName);
+				con.drawImage(cardnumber, intX + intCount, 0);
+				intX = intX + 216;
+			con.println(" ");	
+		}
 		
 		
 		
