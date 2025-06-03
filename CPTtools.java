@@ -198,20 +198,79 @@ public class CPTtools{
 		
 		for(intCount = 0; intCount < 5; intCount++){
 			strFileName = "cardnumber" + intHand[intCount][0]+".png";
-				BufferedImage cardnumber = con.loadImage(strFileName);
-				con.drawImage(cardnumber, intX + intCount, 0);
-				intX = intX + 216;
+			BufferedImage cardnumber = con.loadImage(strFileName);
+			con.drawImage(cardnumber, intX + intCount, 0);
+			strFileName = "cardsuit" + intHand[intCount][1]+".png";
+			BufferedImage cardsuit = con.loadImage(strFileName);
+			con.drawImage(cardsuit, intX + intCount, 0);
+			intX = intX + 216;
+			con.sleep(500);
+			
 			con.println(" ");	
 		}
 		
 		
+	}
+	
+	public static void selectcardstext(Console con){
+		con.sleep(500);
+		BufferedImage selectcard = con.loadImage("selectcardtext.png");
+		con.drawImage(selectcard, 0, 0);
+		con.println(" ");
+	}
+	
+	public static int statitan(String strName, int intMoney){
+		if(strName.equalsIgnoreCase("statitan")){
+			intMoney = 2000;
+		}
+		return intMoney;
+	}
+	
+	public static int[][] selectcards(int intHand[][], String strCards[][], Console con){
+		char chrChoice = ' '; 
+		int intChoice;
 		
-		//for(intCount = 1; intCount < 13; intCount++){
-			//strFileName = "cardnumber" + intCount+".png";
-			//BufferedImage cardnumber = con.loadImage(strFileName);
-		//}
-		
-		//intHand[intCount][0]
+		while(chrChoice != 'n'){
+			chrChoice = con.getChar();
+			if(chrChoice == '1'){
+				BufferedImage cardselect1 = con.loadImage("cardselect1.png");
+				con.drawImage(cardselect1, 0, 0);
+				con.println(" ");
+				intChoice = chrChoice - '0';
+				intHand[(intChoice - 1)][0] = Integer.parseInt(strCards[intChoice + 4][0]);
+				intHand[(intChoice - 1)][1] = Integer.parseInt(strCards[intChoice + 4][1]);
+			}else if(chrChoice == '2'){
+				BufferedImage cardselect2 = con.loadImage("cardselect2.png");
+				con.drawImage(cardselect2, 0, 0);
+				con.println(" ");
+				intChoice = chrChoice - '0';
+				intHand[(intChoice - 1)][0] = Integer.parseInt(strCards[intChoice + 4][0]);
+				intHand[(intChoice - 1)][1] = Integer.parseInt(strCards[intChoice + 4][1]);
+			}else if(chrChoice == '3'){
+				BufferedImage cardselect3 = con.loadImage("cardselect3.png");
+				con.drawImage(cardselect3, 0, 0);
+				con.println(" ");
+				intChoice = chrChoice - '0';
+				intHand[(intChoice - 1)][0] = Integer.parseInt(strCards[intChoice + 4][0]);
+				intHand[(intChoice - 1)][1] = Integer.parseInt(strCards[intChoice + 4][1]);
+			}else if(chrChoice == '4'){
+				BufferedImage cardselect4 = con.loadImage("cardselect4.png");
+				con.drawImage(cardselect4, 0, 0);
+				con.println(" ");
+				intChoice = chrChoice - '0';
+				intHand[(intChoice - 1)][0] = Integer.parseInt(strCards[intChoice + 4][0]);
+				intHand[(intChoice - 1)][1] = Integer.parseInt(strCards[intChoice + 4][1]);
+			}else if(chrChoice == '5'){
+				BufferedImage cardselect5 = con.loadImage("cardselect5.png");
+				con.drawImage(cardselect5, 0, 0);
+				con.println(" ");
+				intChoice = chrChoice - '0';
+				intHand[(intChoice - 1)][0] = Integer.parseInt(strCards[intChoice + 4][0]);
+				intHand[(intChoice - 1)][1] = Integer.parseInt(strCards[intChoice + 4][1]);
+			}
+				
+		}
+		return intHand; 
 	}
 	
 

@@ -30,6 +30,7 @@ public class CPTPokerMain{
 				strName = con.readLine();
 				CPTtools.printname(strName);
 				con.clear();
+				intMoney = CPTtools.statitan(strName, intMoney);
 				CPTtools.getbet(con, intMoney);
 				intBet = con.readInt();
 				CPTtools.clear(con);
@@ -46,8 +47,10 @@ public class CPTPokerMain{
 				CPTtools.setup(con);
 				
 				CPTtools.printcards(con, intHand);
-			
-				
+				CPTtools.selectcardstext(con);
+				CPTtools.selectcards(intHand, strCards, con);
+				CPTtools.setup(con);
+				CPTtools.printcards(con, intHand);
 					
 			//Help Option
 			}else if(chrChoice == 'h'){
