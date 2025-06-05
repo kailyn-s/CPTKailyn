@@ -37,12 +37,6 @@ public class CPTPokerMain{
 				intMoney = CPTtools.calculatemoney(intBet, intMoney);
 				strCards = CPTtools.shuffle(strCards);
 				intHand = CPTtools.dealcards(intHand, strCards);
-				/*for(intCount = 0; intCount < 52; intCount++){
-					con.println(strCards[intCount][0]+" - "+strCards[intCount][1]+" - "+strCards[intCount][2]);
-				}
-				for(intCount = 0; intCount < 52; intCount++){
-					con.println(intHand[intCount][0]+" - "+intHand[intCount][1]);
-				}*/
 				CPTtools.printmoney(con, intMoney);
 				CPTtools.setup(con);
 				
@@ -58,10 +52,11 @@ public class CPTPokerMain{
 			//Leaderboard Option
 			}else if(chrChoice == 'l'){
 				CPTtools.leaderboard(con);
-				chrChoice = con.getChar();
 			}else if(chrChoice == 'm'){
 				CPTtools.clear(con);
 				CPTtools.mainmenu(con);
+				con.clear();
+				con.println(" ");
 			}
 		}
 		CPTtools.quit(con);

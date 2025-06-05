@@ -85,36 +85,35 @@ public class CPTtools{
 		int intCount1; 
 		int i; 
 		
-		while(leaderboard.eof() == false){
+		while(leaderboard.eof() == false && intCount < 10){
 			strName = leaderboard.readLine();
 			intScore = leaderboard.readInt();
+			strLeaderboard[intCount][0] = strName;
+			strLeaderboard[intCount][1] = "" + intScore;
 			intCount = intCount + 1;
 		}
 		System.out.print(intCount);
 		intCount1 = intCount; 
 		System.out.print(intCount1);
 		leaderboard.close();
-		TextInputFile leaderboard1 = new TextInputFile("leaderboard.txt"); 
 		
 		for(i = 0; i < 6; i++){
 			con.println(" ");
 		}
 		if(intCount < 10){
 			System.out.print("less than 10");
-			while(leaderboard1.eof() == false){
-				strName = leaderboard1.readLine();
-				intScore = leaderboard1.readInt();
-				con.println("                                             "+strName+"             "+intScore);
+			for(i = 0; i < intCount; i++){
+				con.println("                                             "+strLeaderboard[i][0]+"             "+strLeaderboard[i][1]);
 				con.println(" ");
 			}
 		}else if(intCount >= 10){
 			System.out.print("more than 10");
 			for(intCount1 = 0; intCount1 < 10; intCount1++){
-				strName = leaderboard1.readLine();
-				intScore = leaderboard1.readInt();
-				con.println("                                             "+strName+"             "+intScore);
+				con.println("                                             "+strLeaderboard[intCount1][0]+"             "+strLeaderboard[intCount1][1]);
 				con.println(" ");
 			}
+		}else{
+			con.println("ERROR");
 		}
 		
 	}
