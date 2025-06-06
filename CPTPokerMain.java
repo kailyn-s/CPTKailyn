@@ -45,6 +45,8 @@ public class CPTPokerMain{
 				CPTtools.selectcards(intHand, strCards, con);
 				CPTtools.setup(con);
 				CPTtools.printcards(con, intHand);
+				con.sleep(3000);
+				intBet = CPTtools.calculatewin(intHand, intBet, con, intMoney);
 				
 					
 			//Help Option

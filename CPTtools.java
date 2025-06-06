@@ -272,11 +272,21 @@ public class CPTtools{
 		return intHand; 
 	}
 	
-	public static int calculatewin(int intHand[][], int intBet){
+	public static int calculatewin(int intHand[][], int intBet, Console con, int intMoney){
 		int intCardTemp; 
 		int intCount;
 		int intCount1; 
+		boolean blnRoyalFlush = false;
+		boolean blnSameSuit = false; 
+		boolean bln10Straight = false;
+		boolean blnStraight = false; 
+		boolean bln4ofaKind = false; 
+		boolean bln3ofaKind = false; 
+		boolean blnFullHouse = false; 
+		boolean bln2ofaKind = false; 
+		boolean blnHighCard = false; 
 		
+		//Bubble sort cards by number!!
 		for(intCount1 = 0; intCount1 < 5-1; intCount1++){
 			for(intCount = 0; intCount < 5-1; intCount++){
 				if(intHand[intCount][0] > intHand[intCount + 1][0]){
@@ -293,12 +303,89 @@ public class CPTtools{
 				}
 			}
 		}
-		
-		if(intHand[0][0] == 1 && intHand[1][0] == 10 && intHand[2][0] == 11 && intHand[3][0] == 12 && intHand[4][0] == 13 && intHand[0][1] == intHand[1][1] && intHand[1][1] == intHand[2][1] && intHand[2][1] == intHand[3][1] && intHand[3][1] == intHand[4][1]){
-			
+		//Checks
+		if(intHand[0][1] == intHand[1][1] && intHand[1][1] == intHand[2][1] && intHand[2][1] == intHand[3][1] && intHand[3][1] == intHand[4][1]){
+			blnSameSuit = true; 
+		}
+		if(intHand[0][0] == 1 && intHand[1][0] == 10 && intHand[2][0] == 11 && intHand[3][0] == 12 && intHand[4][0] == 13){
+			bln10Straight = true; 
+		}
+		intCount = intHand[0][0]; 
+		if(intHand[0][0] == intCount && intHand[1][0] == intCount + 1 && intHand[2][0] == intCount + 2 && intHand[3][0] == intCount + 3 && intHand[4][0] == intCount + 4){
+			blnStraight = true; 
+		}
+		if((intHand[0][0] == intHand[1][0] && intHand[1][0] == intHand[2][0] && intHand[2][0] == intHand[3][0]) || (intHand[1][0] == intHand[2][0] && intHand[2][0] == intHand[3][0] && intHand[3][0] == intHand[4][0])){
+			bln4ofaKind = true; 
+		}
+		if((intHand[0][0] == intHand[1][0] && intHand[1][0] == intHand[2][0]) || (intHand[1][0] == intHand[2][0] && intHand[2][0] == intHand[3][0]) || (intHand[2][0] == intHand[3][0] && intHand[3][0] == intHand[4][0])){
+			bln3ofaKind = true; 
+		}
+		if((intHand[0][0] == intHand[1][0] && intHand[1][0] == intHand[2][0] && intHand[3][0] == intHand[4][0]) || (intHand[0][0] == intHand[1][0] && intHand[2][0] == intHand[3][0] && intHand[3][0] == intHand[4][0])){
+			blnFullHouse = true; 
+		}
+		if(intHand[0][0] == intHand[1][0] || intHand[1][0] == intHand[2][0] || intHand[2][0] == intHand[3][0] || intHand[3][0] == intHand[4][0]){
+			bln2ofaKind = true; 
+		}
+		if(intHand[0][0] >= 11 || intHand[0][0] == 1 || intHand[1][0] >= 11 || intHand[1][0] == 1 || intHand[2][0] >= 11 || intHand[2][0] == 1 || intHand[3][0] >= 11 || intHand[3][0] == 1 || intHand[4][0] >= 11 || intHand[4][0] == 1){
+			blnHighCard = true; 
 		}
 		
+		BufferedImage royalflush = con.loadImage("royalflush.png");
+		BufferedImage straightflush = con.loadImage("straightflush.png");
+		BufferedImage fourofakind = con.loadImage("fourofakind.png");
+		BufferedImage fullhouse = con.loadImage("fullhouse.png");
+		BufferedImage flush = con.loadImage("flush.png");
+		BufferedImage straight = con.loadImage("straight.png");
+		BufferedImage threeofakind = con.loadImage("threeofakind.png");
+		BufferedImage twopair = con.loadImage("twopair.png");
+		BufferedImage highcard = con.loadImage("highcard.png");
+		BufferedImage nothing = con.loadImage("nothing.png");
 		
+		con.clear();
+		//Determining hand value
+		if(bln10Straight == true && blnSameSuit == true){
+			con.drawImage(royalflush, 0, 0);
+			intBet = intBet * 800; 
+			con.println(" ");
+		}else if(blnStraight == true && blnSameSuit == true){
+			con.drawImage(straightflush, 0, 0);
+			intBet = intBet  * 50; 
+			con.println(" ");
+		}else if(bln4ofaKind == true){
+			con.drawImage(fourofakind, 0, 0);
+			intBet = intBet * 25;
+			con.println(" ");
+		}else if(blnFullHouse == true){
+			con.drawImage(fullhouse, 0, 0);
+			intBet = intBet * 9;
+			con.println(" ");
+		}else if(blnSameSuit == true){
+			con.drawImage(flush, 0, 0);
+			intBet = intBet * 6	;
+			con.println(" ");
+		}else if(blnStraight == true || bln10Straight == true){
+			con.drawImage(straight, 0, 0);
+			intBet = intBet * 4;
+			con.println(" ");
+		}else if(bln3ofaKind == true){
+			con.drawImage(threeofakind, 0, 0);
+			intBet = intBet * 3;
+			con.println(" ");
+		}else if(bln2ofaKind == true){
+			con.drawImage(twopair, 0, 0);
+			intBet = intBet * 2;
+			con.println(" ");
+		}else if(blnHighCard == true){
+			con.drawImage(highcard, 0, 0);
+			con.println(" ");
+		}else{
+			con.drawImage(nothing, 0, 0);
+			intBet = intBet * 0;
+			con.println(" ");
+		}
+		intMoney = intMoney + intBet;
+		con.println(" ");
+		con.println("                                                                                            "+intMoney);
 		return intBet; 
 	}
 
