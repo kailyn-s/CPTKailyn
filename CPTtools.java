@@ -272,6 +272,35 @@ public class CPTtools{
 		return intHand; 
 	}
 	
+	public static int calculatewin(int intHand[][], int intBet){
+		int intCardTemp; 
+		int intCount;
+		int intCount1; 
+		
+		for(intCount1 = 0; intCount1 < 5-1; intCount1++){
+			for(intCount = 0; intCount < 5-1; intCount++){
+				if(intHand[intCount][0] > intHand[intCount + 1][0]){
+					//swap column 0
+					intCardTemp = intHand[intCount][0];
+					intHand[intCount][0] = intHand[intCount+1][0];
+					intHand[intCount+1][0] = intCardTemp;
+					
+					//swap column 1
+					intCardTemp = intHand[intCount][1];
+					intHand[intCount][1] = intHand[intCount+1][1];
+					intHand[intCount+1][1] = intCardTemp;
+							
+				}
+			}
+		}
+		
+		if(intHand[0][0] == 1 && intHand[1][0] == 10 && intHand[2][0] == 11 && intHand[3][0] == 12 && intHand[4][0] == 13 && intHand[0][1] == intHand[1][1] && intHand[1][1] == intHand[2][1] && intHand[2][1] == intHand[3][1] && intHand[3][1] == intHand[4][1]){
+			
+		}
+		
+		
+		return intBet; 
+	}
 
 	
 }

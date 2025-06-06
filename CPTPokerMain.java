@@ -45,6 +45,7 @@ public class CPTPokerMain{
 				CPTtools.selectcards(intHand, strCards, con);
 				CPTtools.setup(con);
 				CPTtools.printcards(con, intHand);
+				
 					
 			//Help Option
 			}else if(chrChoice == 'h'){
