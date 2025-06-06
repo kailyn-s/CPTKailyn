@@ -5,7 +5,7 @@ public class bettest{
 		Console con = new Console();
 		int intHand[][];
 		intHand = new int[5][2];
-		int intBet = 500; 
+		int intBet = 1; 
 		int intCardTemp; 
 		int intCount;
 		int intCount1; 
@@ -15,6 +15,9 @@ public class bettest{
 		boolean blnStraight = false; 
 		boolean bln4ofaKind = false; 
 		boolean bln3ofaKind = false; 
+		boolean blnFullHouse = false; 
+		boolean bln2ofaKind = false; 
+		boolean blnHighCard = false; 
 		
 		
 		
@@ -69,6 +72,18 @@ public class bettest{
 			bln3ofaKind = true; 
 			con.println("three of a kind"); 
 		}
+		if((intHand[0][0] == intHand[1][0] && intHand[1][0] == intHand[2][0] && intHand[3][0] == intHand[4][0]) || (intHand[0][0] == intHand[1][0] && intHand[2][0] == intHand[3][0] && intHand[3][0] == intHand[4][0])){
+			blnFullHouse = true; 
+			con.println("full house");
+		}
+		if(intHand[0][0] == intHand[1][0] || intHand[1][0] == intHand[2][0] || intHand[2][0] == intHand[3][0] || intHand[3][0] == intHand[4][0]){
+			bln2ofaKind = true; 
+			con.println("pair");
+		}
+		if(intHand[0][0] >= 11 || intHand[0][0] == 1 || intHand[1][0] >= 11 || intHand[1][0] == 1 || intHand[2][0] >= 11 || intHand[2][0] == 1 || intHand[3][0] >= 11 || intHand[3][0] == 1 || intHand[4][0] >= 11 || intHand[4][0] == 1){
+			blnHighCard = true; 
+			con.println("high card");
+		}
 		
 		//Determining hand value
 		if(bln10Straight == true && blnSameSuit == true){
@@ -80,14 +95,25 @@ public class bettest{
 		}else if(bln4ofaKind == true){
 			con.println("four of a kind");
 			intBet = intBet * 25;
-		//NEED FULLHOUSE!!
+		}else if(blnFullHouse == true){
+			con.println("full house");
+			intBet = intBet * 9;
 		}else if(blnSameSuit == true){
 			con.println("flush");
 			intBet = intBet * 6	;
+		}else if(blnStraight == true || bln10Straight == true){
+			con.println("straight");
+			intBet = intBet * 4;
 		}else if(bln3ofaKind == true){
 			con.println("three of a kind");
 			intBet = intBet * 3;
+		}else if(bln2ofaKind == true){
+			con.println("pair");
+			intBet = intBet * 2;
+		}else if(blnHighCard == true){
+			con.println("high card");
+		}else{
+			intBet = intBet * 0;
 		}
-		
 	}
 }
