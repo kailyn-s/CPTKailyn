@@ -14,14 +14,15 @@ public class bettest{
 		boolean bln10Straight = false;
 		boolean blnStraight = false; 
 		boolean bln4ofaKind = false; 
+		boolean bln3ofaKind = false; 
 		
 		
 		
-		intHand[0][0] = 2;
+		intHand[0][0] = 1;
 		intHand[1][0] = 1; 
 		intHand[2][0] = 2; 
-		intHand[3][0] = 2;
-		intHand[4][0] = 2; 
+		intHand[3][0] = 1;
+		intHand[4][0] = 1; 
 		intHand[0][1] = 1;
 		intHand[1][1] = 1;
 		intHand[2][1] = 1;
@@ -64,6 +65,10 @@ public class bettest{
 			bln4ofaKind = true; 
 			con.println("four of a kind");
 		}
+		if((intHand[0][0] == intHand[1][0] && intHand[1][0] == intHand[2][0]) || (intHand[1][0] == intHand[2][0] && intHand[2][0] == intHand[3][0]) || (intHand[2][0] == intHand[3][0] && intHand[3][0] == intHand[4][0])){
+			bln3ofaKind = true; 
+			con.println("three of a kind"); 
+		}
 		
 		//Determining hand value
 		if(bln10Straight == true && blnSameSuit == true){
@@ -72,6 +77,16 @@ public class bettest{
 		}else if(blnStraight == true && blnSameSuit == true){
 			con.println("straight flush");
 			intBet = intBet  * 50; 
+		}else if(bln4ofaKind == true){
+			con.println("four of a kind");
+			intBet = intBet * 25;
+		//NEED FULLHOUSE!!
+		}else if(blnSameSuit == true){
+			con.println("flush");
+			intBet = intBet * 6	;
+		}else if(bln3ofaKind == true){
+			con.println("three of a kind");
+			intBet = intBet * 3;
 		}
 		
 	}
