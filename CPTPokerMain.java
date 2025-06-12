@@ -7,7 +7,7 @@ public class CPTPokerMain{
 		Console con = new Console("Poker - ICS3U1 CPT", 1280, 720);
 		CPTtools.mainmenu(con);
         
-        String strName;
+        String strName = "";
 		char chrChoice; 
 		int intMoney = 1000;
 		int intBet; 
@@ -17,10 +17,11 @@ public class CPTPokerMain{
 		int intHand[][];
 		String strCardTemp;
 		
+		
 		strCards = new String[52][3];
 		intHand = new int[5][2];
 		
-		chrChoice = ' ';
+		chrChoice = 'a';
 		while(chrChoice != 'q'){
 			chrChoice = con.getChar();
 			//Play Option
@@ -28,9 +29,14 @@ public class CPTPokerMain{
 				CPTtools.clear(con);
 				CPTtools.getname(con, intMoney);
 				strName = con.readLine();
-				CPTtools.printname(strName);
-				con.clear();
+				//CPTtools.printname(strName);
+				//con.clear();
 				intMoney = CPTtools.statitan(strName, intMoney);
+				BufferedImage imgNextButton = con.loadImage("nextbutton.png");
+				con.drawImage(imgNextButton, 0, 0);
+				con.println(" ");
+			}else if(chrChoice == 'n'){
+				con.clear();
 				CPTtools.getbet(con, intMoney);
 				intBet = con.readInt();
 				CPTtools.clear(con);
@@ -45,8 +51,8 @@ public class CPTPokerMain{
 				CPTtools.selectcards(intHand, strCards, con);
 				CPTtools.setup(con);
 				CPTtools.printcards(con, intHand);
-				con.sleep(3000);
-				intBet = CPTtools.calculatewin(intHand, intBet, con, intMoney);
+				con.sleep(2500);
+				intMoney = CPTtools.calculatewin(intHand, intBet, con, intMoney);
 				
 					
 			//Help Option
@@ -54,7 +60,7 @@ public class CPTPokerMain{
 				CPTtools.help(con);
 			//Leaderboard Option
 			}else if(chrChoice == 'l'){
-				CPTtools.leaderboard(con);
+				CPTtools.leaderboard1(con);
 			}else if(chrChoice == 'm'){
 				CPTtools.clear(con);
 				CPTtools.mainmenu(con);
@@ -62,6 +68,11 @@ public class CPTPokerMain{
 				con.println(" ");
 			}
 		}
+		con.clear();
+		TextOutputFile leaderboard = new TextOutputFile("leaderboard.txt", true);
+		leaderboard.println(strName);
+		leaderboard.println(intMoney);
+		
 		CPTtools.quit(con);
 		
 		

@@ -226,10 +226,10 @@ public class CPTtools{
 	}
 	
 	public static int[][] selectcards(int intHand[][], String strCards[][], Console con){
-		char chrChoice = ' '; 
+		char chrChoice = 'a'; 
 		int intChoice;
 		
-		while(chrChoice != 'n'){
+		while(chrChoice != ' '){
 			chrChoice = con.getChar();
 			if(chrChoice == '1'){
 				BufferedImage cardselect1 = con.loadImage("cardselect1.png");
@@ -284,7 +284,8 @@ public class CPTtools{
 		boolean bln3ofaKind = false; 
 		boolean blnFullHouse = false; 
 		boolean bln2ofaKind = false; 
-		boolean blnHighCard = false; 
+		boolean blnJacksorBetter = false; 
+		boolean blnTwoPair = false; 
 		
 		//Bubble sort cards by number!!
 		for(intCount1 = 0; intCount1 < 5-1; intCount1++){
@@ -323,11 +324,11 @@ public class CPTtools{
 		if((intHand[0][0] == intHand[1][0] && intHand[1][0] == intHand[2][0] && intHand[3][0] == intHand[4][0]) || (intHand[0][0] == intHand[1][0] && intHand[2][0] == intHand[3][0] && intHand[3][0] == intHand[4][0])){
 			blnFullHouse = true; 
 		}
-		if(intHand[0][0] == intHand[1][0] || intHand[1][0] == intHand[2][0] || intHand[2][0] == intHand[3][0] || intHand[3][0] == intHand[4][0]){
-			bln2ofaKind = true; 
+		if((intHand[0][0] == intHand[1][0] && intHand[2][0] == intHand[3][0]) || (intHand[1][0] == intHand[2][0] && intHand[3][0] == intHand[4][0]) || (intHand[0][0] == intHand[1][0] && intHand[3][0] == intHand[4][0])){
+			blnTwoPair = true;
 		}
-		if(intHand[0][0] >= 11 || intHand[0][0] == 1 || intHand[1][0] >= 11 || intHand[1][0] == 1 || intHand[2][0] >= 11 || intHand[2][0] == 1 || intHand[3][0] >= 11 || intHand[3][0] == 1 || intHand[4][0] >= 11 || intHand[4][0] == 1){
-			blnHighCard = true; 
+		if((intHand[0][0] == intHand[1][0] && intHand[0][0] > 10 && intHand[1][0] > 10) || (intHand[1][0] == intHand[2][0] && intHand[1][0] > 10 && intHand[2][0] > 10) || (intHand[2][0] == intHand[3][0] && intHand[2][0] > 10 && intHand[3][0] > 10) || (intHand[3][0] == intHand[4][0] && intHand[3][0] > 10 && intHand[4][0] > 10) || (intHand[0][0] == intHand[1][0] && intHand[0][0] == 1 && intHand[1][0] == 1) || (intHand[1][0] == intHand[2][0] && intHand[1][0] == 1 && intHand[2][0] == 1) || (intHand[2][0] == intHand[3][0] && intHand[2][0] == 1 && intHand[3][0] == 1) || (intHand[3][0] == intHand[4][0] && intHand[3][0] == 1 && intHand[4][0] == 1)){
+			blnJacksorBetter = true; 
 		}
 		
 		BufferedImage royalflush = con.loadImage("royalflush.png");
@@ -338,7 +339,7 @@ public class CPTtools{
 		BufferedImage straight = con.loadImage("straight.png");
 		BufferedImage threeofakind = con.loadImage("threeofakind.png");
 		BufferedImage twopair = con.loadImage("twopair.png");
-		BufferedImage highcard = con.loadImage("highcard.png");
+		BufferedImage jacksorbetter = con.loadImage("jacksorbetter.png");
 		BufferedImage nothing = con.loadImage("nothing.png");
 		
 		con.clear();
@@ -371,12 +372,12 @@ public class CPTtools{
 			con.drawImage(threeofakind, 0, 0);
 			intBet = intBet * 3;
 			con.println(" ");
-		}else if(bln2ofaKind == true){
+		}else if(blnTwoPair == true){
 			con.drawImage(twopair, 0, 0);
 			intBet = intBet * 2;
 			con.println(" ");
-		}else if(blnHighCard == true){
-			con.drawImage(highcard, 0, 0);
+		}else if(blnJacksorBetter == true){
+			con.drawImage(jacksorbetter, 0, 0);
 			con.println(" ");
 		}else{
 			con.drawImage(nothing, 0, 0);
@@ -386,8 +387,69 @@ public class CPTtools{
 		intMoney = intMoney + intBet;
 		con.println(" ");
 		con.println("                                                                                            "+intMoney);
-		return intBet; 
+		return intMoney; 
 	}
 
-	
+	public static void leaderboard1(Console con){
+		con.clear();
+		BufferedImage imgLeaderboard = con.loadImage("leaderboard.png");
+		con.drawImage(imgLeaderboard, 0, 0);
+		con.println(" ");
+		
+		TextInputFile leaderboard = new TextInputFile("leaderboard.txt");
+		String strLeaderboard[][];
+		int intTemp; 
+		String strTemp1; 
+		String strTemp2; 
+		String strTemp; 
+		int intCountLine = 0;
+		int intCount;
+		int intCount2; 
+		
+		while(leaderboard.eof() == false){
+			strTemp = leaderboard.readLine();
+			intTemp = leaderboard.readInt();
+			intCountLine++; 
+		}
+		leaderboard.close();
+		strLeaderboard = new String[intCountLine][2];
+		leaderboard = new TextInputFile("leaderboard.txt");
+		
+		for(intCount = 0; intCount < intCountLine; intCount++){
+			strLeaderboard[intCount][0] = leaderboard.readLine();
+			strLeaderboard[intCount][1] = "" + leaderboard.readInt();
+		}
+		for(intCount2 = 0; intCount2 < (intCountLine - 1); intCount2++){
+			for(intCount = 0; intCount < (intCountLine - 1); intCount++){
+				if(Integer.parseInt(strLeaderboard[intCount][1]) < Integer.parseInt(strLeaderboard[intCount + 1][1])){
+					//column 1 - name
+					strTemp1 = strLeaderboard[intCount][0];
+					strLeaderboard[intCount][0] = strLeaderboard[intCount+1][0];
+					strLeaderboard[intCount+1][0] = strTemp1;
+					
+					//column 2 - score
+					strTemp2 = strLeaderboard[intCount][1]; 
+					strLeaderboard[intCount][1] = strLeaderboard[intCount+1][1];
+					strLeaderboard[intCount+1][1] = strTemp2;
+				}
+			}
+		}
+		
+		for(intCount = 0; intCount < 6; intCount++){
+			con.println(" ");
+		}
+		if(intCountLine >= 10){
+			for(intCount = 0; intCount< 10; intCount++){
+				con.println("                                              "+strLeaderboard[intCount][0]);
+				con.println("                                              "+strLeaderboard[intCount][1]);
+			}
+		}else{
+			for(intCount = 0; intCount < intCountLine; intCount++){
+				con.println("                                              "+strLeaderboard[intCount][0]);
+				con.println("                                              "+strLeaderboard[intCount][1]);
+			}
+		}
+		
+		
+	}
 }
