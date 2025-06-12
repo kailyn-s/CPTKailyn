@@ -307,56 +307,56 @@ public class CPTtools{
 			blnJacksorBetter = true; 
 		}
 		
-		BufferedImage royalflush = con.loadImage("royalflush.png");
-		BufferedImage straightflush = con.loadImage("straightflush.png");
-		BufferedImage fourofakind = con.loadImage("fourofakind.png");
-		BufferedImage fullhouse = con.loadImage("fullhouse.png");
-		BufferedImage flush = con.loadImage("flush.png");
-		BufferedImage straight = con.loadImage("straight.png");
-		BufferedImage threeofakind = con.loadImage("threeofakind.png");
-		BufferedImage twopair = con.loadImage("twopair.png");
-		BufferedImage jacksorbetter = con.loadImage("jacksorbetter.png");
-		BufferedImage nothing = con.loadImage("nothing.png");
+		BufferedImage imgroyalflush = con.loadImage("royalflush.png");
+		BufferedImage imgstraightflush = con.loadImage("straightflush.png");
+		BufferedImage imgfourofakind = con.loadImage("fourofakind.png");
+		BufferedImage imgfullhouse = con.loadImage("fullhouse.png");
+		BufferedImage imgflush = con.loadImage("flush.png");
+		BufferedImage imgstraight = con.loadImage("straight.png");
+		BufferedImage imgthreeofakind = con.loadImage("threeofakind.png");
+		BufferedImage imgtwopair = con.loadImage("twopair.png");
+		BufferedImage imgjacksorbetter = con.loadImage("jacksorbetter.png");
+		BufferedImage imgnothing = con.loadImage("nothing.png");
 		
 		con.clear();
 		//Determining hand value
 		if(bln10Straight == true && blnSameSuit == true){
-			con.drawImage(royalflush, 0, 0);
+			con.drawImage(imgroyalflush, 0, 0);
 			intBet = intBet * 800; 
 			con.println(" ");
 		}else if(blnStraight == true && blnSameSuit == true){
-			con.drawImage(straightflush, 0, 0);
+			con.drawImage(imgstraightflush, 0, 0);
 			intBet = intBet  * 50; 
 			con.println(" ");
 		}else if(bln4ofaKind == true){
-			con.drawImage(fourofakind, 0, 0);
+			con.drawImage(imgfourofakind, 0, 0);
 			intBet = intBet * 25;
 			con.println(" ");
 		}else if(blnFullHouse == true){
-			con.drawImage(fullhouse, 0, 0);
+			con.drawImage(imgfullhouse, 0, 0);
 			intBet = intBet * 9;
 			con.println(" ");
 		}else if(blnSameSuit == true){
-			con.drawImage(flush, 0, 0);
+			con.drawImage(imgflush, 0, 0);
 			intBet = intBet * 6	;
 			con.println(" ");
 		}else if(blnStraight == true || bln10Straight == true){
-			con.drawImage(straight, 0, 0);
+			con.drawImage(imgstraight, 0, 0);
 			intBet = intBet * 4;
 			con.println(" ");
 		}else if(bln3ofaKind == true){
-			con.drawImage(threeofakind, 0, 0);
+			con.drawImage(imgthreeofakind, 0, 0);
 			intBet = intBet * 3;
 			con.println(" ");
 		}else if(blnTwoPair == true){
-			con.drawImage(twopair, 0, 0);
+			con.drawImage(imgtwopair, 0, 0);
 			intBet = intBet * 2;
 			con.println(" ");
 		}else if(blnJacksorBetter == true){
-			con.drawImage(jacksorbetter, 0, 0);
+			con.drawImage(imgjacksorbetter, 0, 0);
 			con.println(" ");
 		}else{
-			con.drawImage(nothing, 0, 0);
+			con.drawImage(imgnothing, 0, 0);
 			intBet = intBet * 0;
 			con.println(" ");
 		}
