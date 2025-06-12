@@ -13,7 +13,7 @@ public class CPTPokerMain{
 		Console con = new Console("Poker - ICS3U1 CPT", 1280, 720);
 		CPTtools.mainmenu(con);
         
-        String strName = "";
+        String strName = "default";
 		char chrChoice; 
 		int intMoney = 1000;
 		int intBet; 
@@ -33,6 +33,7 @@ public class CPTPokerMain{
 			//Play Option
 			if(chrChoice == 'p'){
 				CPTtools.clear(con);
+				intMoney = 1000;
 				CPTtools.getname(con, intMoney);
 				strName = con.readLine();
 				//CPTtools.printname(strName);
