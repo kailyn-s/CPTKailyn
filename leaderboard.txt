@@ -24,3 +24,7 @@ player10
 1000
 kailyn
 500
+statitan
+1500
+statitan
+1500

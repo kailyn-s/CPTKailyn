@@ -62,16 +62,16 @@ public class CPTPokerMain{
 			}else if(chrChoice == 'l'){
 				CPTtools.leaderboard(con);
 				TextOutputFile leaderboard = new TextOutputFile("leaderboard.txt", true);
-		leaderboard.println(strName);
-		leaderboard.println(intMoney);
-		leaderboard.close();
+				leaderboard.println(strName);
+				leaderboard.println(intMoney);
+				leaderboard.close();
 			}else if(chrChoice == 'm'){
 				CPTtools.clear(con);
 				CPTtools.mainmenu(con);
 				con.clear();
 				con.println(" ");
 			}else if(chrChoice == 's'){
-				
+				CPTtools.secretmenu(con);
 			}
 		}
 		con.clear();
