@@ -423,4 +423,10 @@ public class CPTtools{
 		
 		
 	}
+	
+	public static void secretmenu(Console con){
+		BufferedImage imgSecretMenu = con.loadImage("secretmenu.png");
+		con.drawImage(imgSecretMenu, 0, 0);
+		con.println(" ");
+	}
 }

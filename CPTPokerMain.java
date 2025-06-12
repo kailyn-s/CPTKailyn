@@ -70,6 +70,8 @@ public class CPTPokerMain{
 				CPTtools.mainmenu(con);
 				con.clear();
 				con.println(" ");
+			}else if(chrChoice == 's'){
+				
 			}
 		}
 		con.clear();
