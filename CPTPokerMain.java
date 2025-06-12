@@ -60,7 +60,11 @@ public class CPTPokerMain{
 				CPTtools.help(con);
 			//Leaderboard Option
 			}else if(chrChoice == 'l'){
-				CPTtools.leaderboard1(con);
+				CPTtools.leaderboard(con);
+				TextOutputFile leaderboard = new TextOutputFile("leaderboard.txt", true);
+		leaderboard.println(strName);
+		leaderboard.println(intMoney);
+		leaderboard.close();
 			}else if(chrChoice == 'm'){
 				CPTtools.clear(con);
 				CPTtools.mainmenu(con);
@@ -69,9 +73,6 @@ public class CPTPokerMain{
 			}
 		}
 		con.clear();
-		TextOutputFile leaderboard = new TextOutputFile("leaderboard.txt", true);
-		leaderboard.println(strName);
-		leaderboard.println(intMoney);
 		
 		CPTtools.quit(con);
 		
