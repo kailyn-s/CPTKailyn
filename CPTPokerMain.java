@@ -1,9 +1,15 @@
+//Kailyn Sy
+//Poker - ICS3U1 CPT
+//Last Modified: Thursday, June 12, 2025
+//Version 1.3
+
 import arc.*;
 import java.awt.Color;
 import java.awt.image.BufferedImage; 
 
 public class CPTPokerMain{
 	public static void main(String[] args){
+		
 		Console con = new Console("Poker - ICS3U1 CPT", 1280, 720);
 		CPTtools.mainmenu(con);
         
@@ -60,11 +66,11 @@ public class CPTPokerMain{
 				CPTtools.help(con);
 			//Leaderboard Option
 			}else if(chrChoice == 'l'){
-				CPTtools.leaderboard(con);
 				TextOutputFile leaderboard = new TextOutputFile("leaderboard.txt", true);
 				leaderboard.println(strName);
 				leaderboard.println(intMoney);
 				leaderboard.close();
+				CPTtools.leaderboard(con);
 			}else if(chrChoice == 'm'){
 				CPTtools.clear(con);
 				CPTtools.mainmenu(con);

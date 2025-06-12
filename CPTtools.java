@@ -1,3 +1,8 @@
+//Kailyn Sy
+//Poker - ICS3U1 CPT
+//Last Modified: Thursday, June 12, 2025
+//Version 1.3
+
 import arc.*;
 import java.awt.Color;
 import java.awt.image.BufferedImage; 
